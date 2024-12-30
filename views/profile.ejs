@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full bg-zinc-900 flex items-center flex-col"> 
+        <a href="/logout" class="bg-red-600 px-5 py-2 rounded-lg text-xl ml-[90%] mt-5 text-white hover:bg-red-700">Logout</a> 
+        <h1 class="text-4xl text-center text-white mb-5 mt-10 font-bold">Hey<%= user.name %>, you can create posts here</h1>
+        <form action="/post" method="post" enctype="multipart/form-data" class="text-white flex flex-col gap-5 w-[90%] sm:w-[400px] max-w-full"> 
+            
+            <input type="text" id="title" class="w-full h-12 rounded outline-none bg-transparent px-3 text-xl border border-blue-800 mt-10" placeholder="Add Title" name="title"> 
+            
+            <textarea id="details" name="content" class="w-full h-24 rounded outline-none bg-transparent px-3 text-xl border border-blue-800" placeholder="Add Details"></textarea>
+
+            <input type="file" id="file" class="w-full h-12 rounded outline-none bg-transparent px-3 text-xl py-1 mx-[100px]" name="image"> 
+
+            <input type="submit" class="px-5 py-2 border border-blue-700 w-[150px] rounded-xl text-xl font-semibold self-center hover:bg-blue-700 hover:text-white mt-5" value="Create Post">
+        </form>
+
+        <div class="mt-20 w-full px-5 h-screen">
+            <h2 class="text-2xl font-semibold text-center text-white">Your Posts</h2>
+            <div class="postsContainer flex flex-wrap justify-center gap-8 mt-5"> 
+                <% user.posts.reverse().forEach(function(post){ %>
+                  <div class="post w-80 gap-2 p-3 bg-zinc-700 flex items-center justify-center text-white font-semibold rounded-md flex flex-col"> 
+                    <div class="image w-72 h-[145px] mb-1">
+                        <img class="w-full h-full object-contain" src="/images/uploads/<%= post.image %>" alt="Image description">
+                      </div>                      
+                      <h1 class="text-xl font-bold"><%= post.title %></h1>
+                      <p class="text-lg font-lg tracking-tight"> <%= post.content %> </p>
+                      <div class="buttons flex gap-16"> 
+                          <a href="/edit/<%= post._id %>" class="text-blue-200 hover:underline text-xl">Edit</a>
+                          <a href="/delete/<%= post._id %>" class="text-red-500 hover:underline text-xl">Delete</a>
+                      </div>
+                  </div> 
+                <% }) %>    
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-zinc-900 flex items-center flex-col">  
+        <h1 class="text-4xl text-center text-white mb-5 mt-10 font-bold">Edit your Post here</h1>
+        <form action="/update/<%= post._id %>" method="post" enctype="multipart/form-data" class="text-white flex flex-col gap-5 w-[90%] sm:w-[400px] max-w-full"> 
+            
+            <input type="text" id="title" class="w-full h-12 rounded outline-none bg-transparent px-3 text-xl border border-blue-800 mt-10" placeholder="Add Title" name="title" value=<%= post.title %>> 
+            
+            <textarea id="details" name="content" class="w-full h-24 rounded outline-none bg-transparent px-3 text-xl border border-blue-800" placeholder="Add Details" > <%= post.content %> </textarea>
+
+            <input type="file" id="file" class="w-full h-12 rounded outline-none bg-transparent px-3 text-xl py-1 mx-[100px]" name="image">  
+
+            <input type="submit" class="px-5 py-2 border border-blue-700 w-[150px] rounded-xl text-xl font-semibold self-center hover:bg-blue-700 hover:text-white mt-5" value="update Post">
+        </form> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-zinc-900 flex justify-center items-center flex-col"> 
+        <form action="/register" method="post" class="flex flex-col w-[90%] sm:w-[500px] max-w-full border-[3px] border-blue-800 items-center p-10 gap-5 text-white rounded-lg">
+            <h1 class="text-3xl text-center text-white mb-5 font-bold">Register Your Account</h1>
+             
+            <label for="username" class="w-full text-left">Username:</label>
+            <input type="text" id="username" name="username" 
+                   class="w-full h-12 rounded outline-none border-b-2 border-blue-800 bg-transparent px-3 text-xl focus:outline-none focus:border-blue-500" 
+                   placeholder="Enter your username" required>
+             
+            <label for="email" class="w-full text-left">Email:</label>
+            <input type="email" id="email" name="email" 
+                   class="w-full h-12 rounded outline-none border-b-2 border-blue-800 bg-transparent px-3 text-xl focus:outline-none focus:border-blue-500" 
+                   placeholder="Enter your email" required>
+            
+            <label for="password" class="w-full text-left">Password:</label>
+            <input type="password" id="password" name="password" 
+                   class="w-full h-12 rounded outline-none border-b-2 border-blue-800 bg-transparent px-3 text-xl focus:outline-none focus:border-blue-500" 
+                   placeholder="Enter your password" required>
+            
+            <input type="submit" class="px-5 py-2 border border-blue-700 w-[150px] rounded-xl text-xl font-semibold mt-5 hover:bg-blue-700 hover:text-white " value="Sign Up">
+            <a href="/login" class="text-lg">Already have an account? <span class="text-blue-600 text-md hover:underline">Login</span></a>
+        </form>
+    </div>
+</body>
+</html>
