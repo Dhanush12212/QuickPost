@@ -22,3 +22,30 @@ QuickPost is a backend-powered application where users can register, log in, and
 - **JWT**: For secure user authentication.
 - **Multer**: For handling image uploads.
 - **MongoDB**: NoSQL database for storing user and post data.
+
+## Installation
+
+### 1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/QuickPost.git
+   ```
+
+### 2. Navigate to the project directory:
+   ```bash
+   cd QuickPost
+   ```
+
+### 3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### 4. Start the server:
+   ```bash
+   npm app.js
+   ```
+
+### Open your browser and go to:
+   ```
+   http://localhost:3000
+   ```
