@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
-const userModel = require("./models/user");
+const userModel = require("./models/user"); 
 const postModel = require("./models/post");
 const jwt = require("jsonwebtoken");
 const upload = require('./config/multerconfig');
-const path = require("path");
- 
+const path = require("path"); 
+const dotenv = require("dotenv");
+dotenv.config();
+
 app.use(cookieParser())
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -98,7 +101,7 @@ app.get("/edit/:id", isLoggedIn, async(req,res) => {
     res.render("edit", {post});
 })
 
-app.post("/update/:id", upload.single('image'), isLoggedIn, async(req,res) => {
+app.post("/update/:id", upload.single('image'), isLoggedIn, async(req,res) => { 
     let {title,content} = req.body; 
     let post = await postModel.findOneAndUpdate({_id: req.params.id},{title,content},{new:true}); 
     if (req.file) {
@@ -112,10 +115,31 @@ function isLoggedIn(req,res,next) {
     try {
         let data = jwt.verify(req.cookies.token, "secret");
         req.user = data;
-        next();
     } catch (err) {
         return res.redirect("/login");
     } 
+    next();
 }
 
-app.listen(3000);
+const connectDB = () => {
+    mongoose.set("strictQuery", true);
+    mongoose
+      .connect(process.env.MONGODB_URL)
+      .then(() => console.log("Connected to Mongo DB"))
+      .catch((err) => {
+        console.error("failed to connect with mongo");
+        console.error(err);
+      });
+  };
+  
+  const startServer = async () => {
+    try {
+      connectDB();
+      app.listen(8080, () => console.log("Server started on port 8080"));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  
+  startServer();
